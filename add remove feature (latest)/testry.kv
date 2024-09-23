@@ -1,0 +1,113 @@
+MDScreen:
+    name: 'testing'
+
+    MDBottomNavigation:
+        selected_color_background: "003B6D"
+        text_color_active: "669ACC"
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Classes'
+            icon: 'account-group-outline'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+
+                MDTopAppBar:
+                    id: top_bar
+                    title: "Classes"
+                    left_action_items: [["arrow-left", lambda x: app.go_back_to_classes()]]
+                    elevation: 10
+
+                MDScrollView:
+                    MDGridLayout:
+                        id: class_section_grid
+                        cols: 1
+                        padding: dp(10)
+                        spacing: dp(10)
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                # Add Floating Action Button to add students
+                MDFloatingActionButton:
+                    id: add_student_button
+                    icon: "plus"
+                    md_bg_color: app.theme_cls.primary_color
+                    pos_hint: {"center_x": .5, "center_y": .1}
+                    on_release: app.open_student_input_dialog()
+                    opacity: 0  # Initially hidden
+                    disabled: True  # Initially disabled
+
+                # Add Floating Action Button to add class sections
+                MDFloatingActionButton:
+                    id: add_class_button
+                    icon: "folder-plus"
+                    md_bg_color: app.theme_cls.primary_color
+                    pos_hint: {"center_x": .5, "center_y": .2}
+                    on_release: app.open_class_input_dialog()  # Open dialog to add class section
+                    opacity: 1  # Initially visible
+                    disabled: False  # Initially enabled
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Answer Key'
+            icon: 'cellphone-key'
+            MDLabel:
+                text: 'Answer Key'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Scanner'
+            icon: 'line-scan'
+            MDLabel:
+                text: 'Scanner'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 4'
+            text: 'Sheet'
+            icon: 'printer-outline'
+            MDLabel:
+                text: 'Sheet'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 5'
+            text: 'Profile'
+            icon: 'account-outline'
+            MDLabel:
+                text: 'Profile'
+                halign: 'center'
+
+<ClassCard>:
+    orientation: 'vertical'
+    size_hint: 1, None
+    height: dp(100)
+    md_bg_color: 1, 1, 1, 1
+    radius: [18, ]
+    on_release: app.on_card_click(self)
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+
+        MDLabel:
+            text: root.section_name
+            font_style: "H6"
+            theme_text_color: "Primary"
+
+<StudentList>:
+    orientation: 'horizontal'
+    size_hint: 1, None
+    height: dp(40)
+    padding: dp(5)
+
+    MDLabel:
+        text: root.student_name
+        font_style: "Body1"
+        theme_text_color: "Primary"
+
+    MDRaisedButton:
+        text: "Remove"
+        on_release: app.remove_student(root.student_name)

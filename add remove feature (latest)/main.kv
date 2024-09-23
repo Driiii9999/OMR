@@ -1,0 +1,48 @@
+MDScreen:
+    name: "main"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        Image:
+            source: "D:\Logo Vector.png"
+            size_hint: .8, .8
+            pos_hint: {"center_x": .5, "center_y": .55}
+        MDLabel:
+            text: "OptiCheck"
+            font_name: "BPoppins"
+            font_size: "33sp"
+            pos_hint: {"center_y": .85}
+            halign: "center"
+            color: 0/255, 59/255, 109/255, 1
+
+        Button:
+            text: "LOGIN"
+            size_hint: .80, .075
+            pos_hint: {"center_x": .5, "center_y": .18}
+            background_color: 0, 0, 0, 0
+            font_name: "BPoppins"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
+            canvas.before:
+                Color:
+                    rgba: 102/255, 154/255, 204/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        Button:
+            text: "SIGNUP"
+            size_hint: .80, .075
+            pos_hint: {"center_x": .5, "center_y": .09}
+            background_color: 0, 0, 0, 0
+            font_name: "BPoppins"
+            color: 102/255, 154/255, 204/255, 1
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup"
+            canvas.before:
+                Color:
+                    rgba: 102/255, 154/255, 204/255, 1
+                Line:
+                    width: 1.2
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 101
